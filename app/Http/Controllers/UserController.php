@@ -243,14 +243,6 @@ class UserController extends Controller
         return response()->json(['message' => __('passwords.changePassword')],200);
     }
 
-//
-
-
-//    public function forgotPassword(Request $request,$userId)
-//    {
-//        $request->validate([ 'email' => ['nullable|email'],]);
-//
-//    }
 
 
 
