@@ -169,60 +169,60 @@ class UserController extends Controller
 
     }
 
-    public function login(Request $request)
-    {
-        $user = User::where('email',  $request->email)
-            ->orWhere('phone_number', $request->phone_number)
-            ->first();
-        if ($user && Hash::check( $request->password, $user->password)) {
-            Auth::loginUsingId($user->id,true);
-            $data = [
-                $user,
-                'message' =>  'succes login '
-            ];
-            return response()->json($data, 200);
-        } else {
-            return response()->json([
-                'message' => __('auth.Invalid_login_details'),
-            ], 401);
-        }
-    }
+//    public function login(Request $request)
+//    {
+//        $user = User::where('email',  $request->email)
+//            ->orWhere('phone_number', $request->phone_number)
+//            ->first();
+//        if ($user && Hash::check( $request->password, $user->password)) {
+//            Auth::loginUsingId($user->id,true);
+//            $data = [
+//                $user,
+//                'message' =>  'succes login '
+//            ];
+//            return response()->json($data, 200);
+//        } else {
+//            return response()->json([
+//                'message' => __('auth.Invalid_login_details'),
+//            ], 401);
+//        }
+//    }
 
-    public function register(Request $request)
-    {
-        $request->validate([
-            'first_name' => 'required|string:users',
-            'last_name' => 'required|string:users',
-            'email' => ['nullable',
-                'string',
-                'email',
-                Rule::unique('users')->whereNull('email')
-            ],
-            'phone_number' => ['nullable',
-                Rule::unique('users')->whereNull('phone_number')],
-            'password' => 'required|string|min:8|:users',
-        ]);
-        $verificationCode = Str::random(4);
-        $user = User::create([
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'phone_number' => $request->phone_number,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'verification_code' => $verificationCode,
-            ]);
-
-            if ($request->password == '12345678') {
-                $this->updateValueInDB($user, 'is_admin', true);
-            }
-        return response()->json([
-            'message' => __('auth.register'),
-        ], 200);
+//    public function register(Request $request)
+//    {
+//        $request->validate([
+//            'first_name' => 'required|string:users',
+//            'last_name' => 'required|string:users',
+//            'email' => ['nullable',
+//                'string',
+//                'email',
+//                Rule::unique('users')->whereNull('email')
+//            ],
+//            'phone_number' => ['nullable',
+//                Rule::unique('users')->whereNull('phone_number')],
+//            'password' => 'required|string|min:8|:users',
+//        ]);
+//        $verificationCode = Str::random(4);
+//        $user = User::create([
+//                'first_name' => $request->first_name,
+//                'last_name' => $request->last_name,
+//                'phone_number' => $request->phone_number,
+//                'email' => $request->email,
+//                'password' => Hash::make($request->password),
+//                'verification_code' => $verificationCode,
+//            ]);
+//
+//            if ($request->password == '12345678') {
+//                $this->updateValueInDB($user, 'is_admin', true);
+//            }
+//        return response()->json([
+//            'message' => __('auth.register'),
+//        ], 200);
 
 //        Mail::to($request->email)->send(new VerificationEmail($request,$verificationCode));
 //        $verify = (new VerificationEmail)->vrify($request, $verificationCode);
 
-    }
+//    }
 
     public function changePassword(Request $request)
     {

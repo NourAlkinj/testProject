@@ -9,9 +9,15 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+{{--    <!-- Fonts -->--}}
+{{--    <link rel="dns-prefetch" href="//fonts.bunny.net">--}}
+{{--    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">--}}
+
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('frontend/css/fontawesome/all.min.css') }}">
+
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])

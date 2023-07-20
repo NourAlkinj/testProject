@@ -113,11 +113,9 @@ return [
     'string'      => 'يجب أن يكون :attribute نصًا.',
     'timezone'    => 'يجب أن يكون :attribute نطاقًا زمنيًا صحيحًا.',
     'unique'      => 'قيمة :attribute مُستخدمة من قبل.',
-    'zero'      => 'قيمة :attribute لا يمكن أن تكون صفرية.',
     'uploaded'    => 'فشل في تحميل الـ :attribute.',
     'url'         => 'صيغة الرابط :attribute غير صحيحة.',
     'uuid'        => ':attribute يجب أن يكون بصيغة UUID سليمة.',
-    'lastNumber' => 'قيمة الكود يجب أن ينتهي برقم .',
 
     /*
     |--------------------------------------------------------------------------
@@ -129,7 +127,6 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-
 
     'custom' => [
         'attribute-name' => [
@@ -150,7 +147,6 @@ return [
 
     'attributes' => [
         'name'                  => 'الاسم',
-        'code'                  => 'الرمز',
         'username'              => 'اسم المُستخدم',
         'email'                 => 'البريد الالكتروني',
         'first_name'            => 'الاسم الأول',
@@ -179,12 +175,5 @@ return [
         'time'                  => 'الوقت',
         'available'             => 'مُتاح',
         'size'                  => 'الحجم',
-        'parity'                => 'التعادل',
-        'category_id'           => 'الصنف الرئيسي',
-        'item_type' => 'نوع المادة',
-        'foreign_name' =>'الاسم البديل ',
-        'abbreviation' =>'الاختصار ',
-
-
     ],
 ];

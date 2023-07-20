@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -13,17 +14,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/products', [ProductController::class, 'index']);
+//Route::get('/', [HomeController::class, 'index']);
 
 
 //------- Product ------//
 
 Route::group(['namespace' => 'Product', 'prefix' => 'product','middleware'=>'auth:api'], function () {
+//Route::group(['namespace' => 'Product', 'prefix' => 'product'], function () {
     Route::get('index', [ProductController::class, 'index'])->name('product.index');
+    Route::get('create', [ProductController::class, 'create'])->name('product.create');
     Route::post('store', [ProductController::class, 'store'])->name('product.store');
-    Route::get('show', [ProductController::class, 'show'])->name('product.show');
+    Route::get('show/{id}', [ProductController::class, 'show'])->name('product.show');
     Route::post('update', [ProductController::class, 'update'])->name('product.update');
-    Route::get('delete', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 });
 
 //------- User ------//
@@ -49,7 +52,7 @@ Route::group(['namespace' => 'User', 'prefix' => 'user','middleware'=>'auth:api'
 
 Route::group(['namespace' => 'User', 'prefix' => 'user',], function () {
     Route::get('login', [UserController::class, 'login'])->name('user.login');
-    Route::get('register', [UserController::class, 'register'])->name('user.register');
+    Route::post('register', [RegisterController::class, 'register'])->name('user.register');
     Route::post('create', [UserController::class, 'create'])->name('user.create');
     Route::get('verify', [UserController::class, 'verify'])->name('user.verify');
     Route::get('show-user-products/{id}', [UserController::class, 'showUserProducts'])->name('user.showUserProducts');
